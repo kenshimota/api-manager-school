@@ -19,7 +19,7 @@ jobs:
       DATABASE_USERNAME_CI: user
       DATABASE_PASSWORD_CI: manager
       DATABASE_HOSTNAME_CI: postgres-server
-      
+
     services:
       postgres-server:
         image: postgres:14-alpine3.17
@@ -48,5 +48,5 @@ jobs:
           bundle install
       - name: execute migrations and seed
         run: |
-          rails db:migrate |
-          rails db:seed
+          rails db:migrate -e ci |
+          rails db:seed -e ci
