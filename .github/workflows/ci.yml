@@ -48,7 +48,7 @@ jobs:
           bundle install
       - name: execute migrations and seed
         run: |
-          rails db:drop RAILS_ENV=ci |
-          rails db:create RAILS_ENV=ci |
-          rails db:migrate RAILS_ENV=ci |
-          rails db:seed RAILS_ENV=ci
+          rails db:drop RAILS_ENV=ci SECRET_KEY_BASE=production_test_key |
+          rails db:create RAILS_ENV=ci SECRET_KEY_BASE=production_test_key |
+          rails db:migrate RAILS_ENV=ci SECRET_KEY_BASE=production_test_key |
+          rails db:seed RAILS_ENV=ci SECRET_KEY_BASE=production_test_key
