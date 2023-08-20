@@ -48,5 +48,5 @@ jobs:
           bundle install
       - name: execute migrations and seed
         run: |
-          rails db:migrate -e ci |
-          rails db:seed -e ci
+          rails db:migrate RAILS_ENV=ci |
+          rails db:seed RAILS_ENV=ci
