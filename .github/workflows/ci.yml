@@ -18,10 +18,10 @@ jobs:
       DATABASE_NAME_CI: manager-school-ci
       DATABASE_USERNAME_CI: user
       DATABASE_PASSWORD_CI: manager
-      DATABASE_HOSTNAME_CI: postgres-server
+      DATABASE_HOSTNAME_CI: postgres
 
     services:
-      postgres-server:
+      postgres:
         image: postgres:14-alpine3.17
 
         # environment database
