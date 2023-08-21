@@ -12,4 +12,4 @@ COPY . /myapp
 
 EXPOSE 3000
 
-CMD ["rails", "server", "-b", "0.0.0.0", "RAILS_ENV=production"]
+CMD ["RAILS_ENV=production", "rails", "server", "-b", "0.0.0.0"]
