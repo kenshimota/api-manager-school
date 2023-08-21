@@ -81,6 +81,11 @@ Rails.application.configure do
     config.logger    = ActiveSupport::TaggedLogging.new(logger)
   end
 
+  hostname = ENV["HOSTNAME_APP"] || nil
+  if hostname
+    config.hosts << hostname
+  end
+
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 end
