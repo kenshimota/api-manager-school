@@ -27,6 +27,7 @@ development:
   host: <%= ENV["DATABASE_HOSTNAME_DEV"] %>
   username: <%= ENV["DATABASE_USERNAME_DEV"] %>
   password: <%= ENV["DATABASE_PASSWORD_DEV"] %>
+  sslmode: <%= ENV["DATABASE_SSLMODE_DEV"] %>
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
