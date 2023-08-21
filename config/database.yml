@@ -91,6 +91,7 @@ ci:
 #
 production:
   <<: *default
-  database: manager_school_production
-  username: manager_school
-  password: <%= ENV["MANAGER_SCHOOL_DATABASE_PASSWORD"] %>
+  database: <%= ENV["DATABASE_NAME_PROD"] %>
+  host: <%= ENV["DATABASE_HOSTNAME_PROD"] %>
+  username: <%= ENV["DATABASE_USERNAME_PROD"] %>
+  password: <%= ENV["DATABASE_PASSWORD_PROD"] %>
