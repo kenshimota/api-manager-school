@@ -23,7 +23,7 @@ default: &default
 
 development:
   <<: *default
-  database: manager_school_development
+  database: <%= ENV["DATABASE_HOSTNAME_DEV"] || "manager_school_development" %> 
   host: <%= ENV["DATABASE_HOSTNAME_DEV"] %>
   username: <%= ENV["DATABASE_USERNAME_DEV"] %>
   password: <%= ENV["DATABASE_PASSWORD_DEV"] %>
