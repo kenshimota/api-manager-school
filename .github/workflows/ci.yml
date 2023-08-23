@@ -21,6 +21,7 @@ jobs:
       DATABASE_PASSWORD_TEST: manager
       DATABASE_HOSTNAME_TEST: localhost
       RAILS_ENV: ci
+      SECRET_KEY_BASE: ci_test_key
 
     services:
       postgres:
@@ -54,10 +55,10 @@ jobs:
           bundle install
       - name: executing migrations
         run: |
-          rails db:migrate SECRET_KEY_BASE=ci_test_key
+          rails db:migrate
       - name: executing seeders
         run: |
-          rails db:seed SECRET_KEY_BASE=ci_test_key
+          rails db:seed
       - name: executing unit tests
         run: |
           bundle exec rspec
