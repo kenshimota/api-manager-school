@@ -24,6 +24,9 @@ default: &default
 development:
   <<: *default
   database: manager_school_development
+  host: <%= ENV["DATABASE_HOSTNAME_DEV"] %>
+  username: <%= ENV["DATABASE_USERNAME_DEV"] %>
+  password: <%= ENV["DATABASE_PASSWORD_DEV"] %>
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -58,6 +61,16 @@ development:
 test:
   <<: *default
   database: manager_school_test
+  host: <%= ENV["DATABASE_HOSTNAME_TEST"] %>
+  username: <%= ENV["DATABASE_USERNAME_TEST"] %>
+  password: <%= ENV["DATABASE_PASSWORD_TEST"] %>
+
+ci:
+  <<: *default
+  database: <%= ENV["DATABASE_NAME_CI"] %>
+  host: <%= ENV["DATABASE_HOSTNAME_CI"] %>
+  username: <%= ENV["DATABASE_USERNAME_CI"] %>
+  password: <%= ENV["DATABASE_PASSWORD_CI"] %>
 
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -81,6 +94,7 @@ test:
 #
 production:
   <<: *default
-  database: manager_school_production
-  username: manager_school
-  password: <%= ENV["MANAGER_SCHOOL_DATABASE_PASSWORD"] %>
+  database: <%= ENV["DATABASE_NAME_PROD"] %>
+  host: <%= ENV["DATABASE_HOSTNAME_PROD"] %>
+  username: <%= ENV["DATABASE_USERNAME_PROD"] %>
+  password: <%= ENV["DATABASE_PASSWORD_PROD"] %>
