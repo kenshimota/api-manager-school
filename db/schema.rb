@@ -10,8 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 0) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_23_005838) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "people", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "last_name", null: false
+    t.integer "document_identification", null: false
+    t.string "address"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["document_identification"], name: "index_people_on_document_identification", unique: true
+  end
 
 end

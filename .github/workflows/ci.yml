@@ -16,6 +16,12 @@ jobs:
       DATABASE_USERNAME_CI: user
       DATABASE_PASSWORD_CI: manager
       DATABASE_HOSTNAME_CI: localhost
+      DATABASE_NAME_TEST: manager-school-ci
+      DATABASE_USERNAME_TEST: user
+      DATABASE_PASSWORD_TEST: manager
+      DATABASE_HOSTNAME_TEST: localhost
+      RAILS_ENV: ci
+      SECRET_KEY_BASE: ci_test_key
 
     services:
       postgres:
@@ -49,10 +55,10 @@ jobs:
           bundle install
       - name: executing migrations
         run: |
-          rails db:migrate RAILS_ENV=ci SECRET_KEY_BASE=ci_test_key
+          rails db:migrate
       - name: executing seeders
         run: |
-          rails db:seed RAILS_ENV=ci SECRET_KEY_BASE=ci_test_key
+          rails db:seed
       - name: executing unit tests
         run: |
           bundle exec rspec
