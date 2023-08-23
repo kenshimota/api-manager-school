@@ -16,6 +16,10 @@ jobs:
       DATABASE_USERNAME_CI: user
       DATABASE_PASSWORD_CI: manager
       DATABASE_HOSTNAME_CI: localhost
+      DATABASE_NAME_TEST: manager-school-ci
+      DATABASE_USERNAME_TEST: user
+      DATABASE_PASSWORD_TEST: manager
+      DATABASE_HOSTNAME_TEST: localhost
 
     services:
       postgres:

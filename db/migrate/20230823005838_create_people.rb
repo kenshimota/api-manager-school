@@ -8,6 +8,5 @@ class CreatePeople < ActiveRecord::Migration[7.0]
       t.timestamps
     end
 
-    # add_index :people, [:document_identification], unique: true
   end
 end
