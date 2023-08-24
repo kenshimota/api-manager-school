@@ -17,11 +17,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_23_005838) do
   create_table "people", force: :cascade do |t|
     t.string "name", null: false
     t.string "last_name", null: false
-    t.integer "document_identification", null: false
+    t.bigint "identity_document", null: false
+    t.integer "phone_code"
+    t.bigint "phone_number"
     t.string "address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["document_identification"], name: "index_people_on_document_identification", unique: true
+    t.index ["identity_document"], name: "index_people_on_identity_document", unique: true
   end
 
 end
