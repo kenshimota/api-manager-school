@@ -7,5 +7,5 @@
 #   Character.create(name: "Luke", movie: movies.first)
 
 ["student", "manager", "representative", "profesor"].each do |name|
-  Role.find_by_or_create(name: name)
+  Role.find_or_create_by(name: name)
 end
