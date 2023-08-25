@@ -48,3 +48,5 @@ group :development do
   gem "faker", "~> 1.6"
   gem "factory_bot_rails", "~> 6.2"
 end
+
+gem "rack-cors", "~> 2.0"
