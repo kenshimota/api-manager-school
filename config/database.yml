@@ -94,7 +94,8 @@ ci:
 #
 production:
   <<: *default
-  database: <%= ENV["DATABASE_NAME_PROD"] %>
-  host: <%= ENV["DATABASE_HOSTNAME_PROD"] %>
-  username: <%= ENV["DATABASE_USERNAME_PROD"] %>
-  password: <%= ENV["DATABASE_PASSWORD_PROD"] %>
+  url: <%= ENV["DATABASE_URL"] %>
+  # database: <%= ENV["DATABASE_NAME_PROD"] %>
+  # host: <%= ENV["DATABASE_HOSTNAME_PROD"] %>
+  # username: <%= ENV["DATABASE_USERNAME_PROD"] %>
+  # password: <%= ENV["DATABASE_PASSWORD_PROD"] %>
