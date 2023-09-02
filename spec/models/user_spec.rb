@@ -4,7 +4,6 @@ require "rails_helper"
 RSpec.describe User, type: :model do
   let(:password) { "m4nAgeR." }
   let(:email) { Faker::Internet.email }
-  let(:role) { Role.create(name: "role-name-1") }
   let(:phone_code) { Faker::Number.number(digits: 3) }
   let(:phone_number) { Faker::Number.number(digits: 10) }
   let(:identity_document) { Faker::Number.number(digits: 10) }
@@ -25,23 +24,30 @@ RSpec.describe User, type: :model do
     end
 
     it "check if the email user is" do
-      expect(User.create(email: nil, password: password, role: role, person: person)).to_not be_valid
-      expect(User.create(email: "", password: password, role: role, person: person)).to_not be_valid
-      expect(User.create(email: "hola", password: password, role: role, person: person)).to_not be_valid
+      expect(User.create(email: nil, password: password, person: person)).to_not be_valid
+      expect(User.create(email: "", password: password, person: person)).to_not be_valid
+      expect(User.create(email: "hola", password: password, person: person)).to_not be_valid
     end
 
     it "check if the password user is validate" do
-      expect(User.create(email: email, password: nil, role: role, person: person)).to_not be_valid
-      expect(User.create(email: email, password: "", role: role, person: person)).to_not be_valid
-      expect(User.create(email: email, password: "1234567", role: role, person: person)).to_not be_valid
-      expect(User.create(email: email, password: "manager", role: role, person: person)).to_not be_valid
-      expect(User.create(email: email, password: "manager*", role: role, person: person)).to_not be_valid
-      expect(User.create(email: email, password: "1manager*", role: role, person: person)).to_not be_valid
+      expect(User.create(email: email, password: nil, person: person)).to_not be_valid
+      expect(User.create(email: email, password: "", person: person)).to_not be_valid
+      expect(User.create(email: email, password: "1234567", person: person)).to_not be_valid
+      expect(User.create(email: email, password: "manager", person: person)).to_not be_valid
+      expect(User.create(email: email, password: "manager*", person: person)).to_not be_valid
+      expect(User.create(email: email, password: "1manager*", person: person)).to_not be_valid
+    end
+
+    it "a user can't be to save while don't have a person" do
+      person_void = Person.new
+      expect(User.create(email: email, password: password, person: nil)).to_not be_valid
+      expect(User.create(email: email, password: password, person: person_void)).to_not be_valid
     end
 
     it "save user unique" do
-      expect(User.create(email: email, password: password, role: role, person: person)).to be_valid
-      expect(User.create(email: email, password: password, role: role, person: person)).to_not be_valid
+      puts roles
+      expect(User.create(email: email, password: password, person: person)).to be_valid
+      expect(User.create(email: email, password: password, person: person)).to_not be_valid
     end
   end
 end

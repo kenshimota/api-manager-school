@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_26_022457) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_28_021609) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -36,7 +36,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_26_022457) do
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
-    t.bigint "role_id", null: false
     t.bigint "person_id", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -48,9 +47,19 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_26_022457) do
     t.index ["jti"], name: "index_users_on_jti", unique: true
     t.index ["person_id"], name: "index_users_on_person_id", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-    t.index ["role_id"], name: "index_users_on_role_id"
+  end
+
+  create_table "users_roles", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "role_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["role_id"], name: "index_users_roles_on_role_id"
+    t.index ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", unique: true
+    t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 
   add_foreign_key "users", "people"
-  add_foreign_key "users", "roles"
+  add_foreign_key "users_roles", "roles"
+  add_foreign_key "users_roles", "users"
 end
