@@ -11,15 +11,17 @@ RSpec.describe Person, type: :model do
       person2 = Person.new(name: "name", last_name: "ho", identity_document: 15465468, phone_code: 58, phone_number: 4165879525)
 
       expect(person1).to_not be_valid
-      expect(person2)
+      expect(person2).to_not be_valid
     end
 
     it "a person won't be valid without last_name or the person have a last_name with less 3 letters" do
       person1 = Person.new(last_name: "lastname", identity_document: 15465468, phone_code: 58, phone_number: 4165879525)
       person2 = Person.new(name: "na", last_name: "lastname", identity_document: 15465468, phone_code: 58, phone_number: 4165879525)
+      person3 = Person.new(name: "ana", last_name: "lastname", identity_document: 15465468, phone_code: 58, phone_number: 4165879525)
 
       expect(person1).to_not be_valid
       expect(person2).to_not be_valid
+      expect(person3).to be_valid
     end
 
     it "a person won't be valid without identity_document" do
