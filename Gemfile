@@ -56,3 +56,5 @@ gem "devise", "~> 4.9"
 gem "devise-jwt", "~> 0.11.0"
 
 gem "fast_jsonapi", "~> 1.5"
+
+gem "validates_timeliness", "~> 7.0.0.beta1"
