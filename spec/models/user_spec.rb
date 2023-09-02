@@ -45,7 +45,6 @@ RSpec.describe User, type: :model do
     end
 
     it "save user unique" do
-      puts roles
       expect(User.create(email: email, password: password, person: person)).to be_valid
       expect(User.create(email: email, password: password, person: person)).to_not be_valid
     end
