@@ -5,7 +5,7 @@ RSpec.describe UsersRole, type: :model do
   let(:password) { "m4nAgeR." }
   let(:email) { Faker::Internet.email }
   let(:person) { FactoryBot.create(:person) }
-  let(:role) { FactoryBot.create(:role_manager) }
+  let(:role) { Role.create(name: "role-name-1") }
   let(:user) { User.create(email: email, password: password, person: person) }
 
   context "validate create a users_role" do
