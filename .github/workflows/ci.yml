@@ -49,16 +49,13 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@ec02537da5712d66d4d50a0f33b7eb52773b5ed1
         with:
-          ruby-version: '3.0.2'
+          ruby-version: "3.0.2"
       - name: install dependencies
         run: |
           bundle install
       - name: executing migrations
         run: |
           rails db:migrate
-      #- name: executing seeders
-      #  run: |
-      #    rails db:seed
       - name: executing unit tests
         run: |
-          bundle exec rspec
+          RAILS_ENV=ci rspec
