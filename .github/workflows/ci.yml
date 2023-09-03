@@ -56,9 +56,9 @@ jobs:
       - name: executing migrations
         run: |
           rails db:migrate
-      - name: executing seeders
-        run: |
-          rails db:seed
+      #- name: executing seeders
+      #  run: |
+      #    rails db:seed
       - name: executing unit tests
         run: |
           bundle exec rspec
