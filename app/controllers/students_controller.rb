@@ -1,6 +1,7 @@
 class StudentsController < ResourceProtectedController
+  before_action :auth_only_user_adults, only: [:index, :show]
   before_action :set_student, only: [:show, :update, :destroy]
-  before_action :auth_only_roles, only: [:create, :update, :destroy]
+  before_action :auth_only_user_academyc, only: [:create, :update, :destroy]
 
   def index
     students = Student.where({}).joins(:person).includes(:person).page params[:page]

@@ -19,6 +19,52 @@ RSpec.describe "Students", type: :request do
 
   let(:student) { Student.create(birthday: birthday, person: Person.create(person)) }
 
+  context "GET /" do
+    describe "session student" do
+      it "get list student from a user student" do
+        data = FactoryBot.create(:user_role_student)
+        current_user = User.find(data[:user_id])
+        sign_in current_user
+
+        get students_url
+        expect(response).to have_http_status(:forbidden)
+      end
+    end
+
+    describe "session representative" do
+      it "get list student from a user representative" do
+        data = FactoryBot.create(:user_role_representative)
+        current_user = User.find(data[:user_id])
+        sign_in current_user
+
+        get students_url
+        expect(response).to have_http_status(:success)
+      end
+    end
+
+    describe "session profesor" do
+      it "get list student from a user profesor" do
+        data = FactoryBot.create(:user_role_profesor)
+        current_user = User.find(data[:user_id])
+        sign_in current_user
+
+        get students_url
+        expect(response).to have_http_status(:success)
+      end
+    end
+
+    describe "session manager" do
+      it "get list student from a user manager" do
+        data = FactoryBot.create(:user_role_manager)
+        current_user = User.find(data[:user_id])
+        sign_in current_user
+
+        get students_url
+        expect(response).to have_http_status(:success)
+      end
+    end
+  end
+
   context "POST /" do
     describe "session student and representative" do
       it "create student from a user student" do
@@ -27,7 +73,7 @@ RSpec.describe "Students", type: :request do
         sign_in current_user
 
         post students_url, params: { person: person, student: { birthday: birthday } }
-        expect(response).to have_http_status(403)
+        expect(response).to have_http_status(:forbidden)
       end
     end
 
@@ -76,7 +122,7 @@ RSpec.describe "Students", type: :request do
         attributes[:address] = Faker::Address.full_address
 
         put student_path(student), params: { person: attributes, student: { birthday: birthday + 10 } }
-        expect(response).to have_http_status(403)
+        expect(response).to have_http_status(:forbidden)
       end
     end
 
@@ -120,7 +166,7 @@ RSpec.describe "Students", type: :request do
         sign_in current_user
 
         delete student_path(student)
-        expect(response).to have_http_status(403)
+        expect(response).to have_http_status(:forbidden)
       end
     end
 

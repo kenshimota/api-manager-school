@@ -3,12 +3,29 @@ class ResourceProtectedController < ApplicationController
 
   private
 
-  def auth_only_roles
+  def auth_only_user_adults
+    role_names = [USERS_ROLES_CONST[:manager], USERS_ROLES_CONST[:profesor], USERS_ROLES_CONST[:representative]]
+    is_allow = does_user_have_roles role_names
+
+    if is_allow == false
+      return render json: { message: "don't allow this url", error: true, success: false }, status: :forbidden
+    end
+  end
+
+  def auth_only_user_academyc
+    role_names = [USERS_ROLES_CONST[:manager], USERS_ROLES_CONST[:profesor]]
+    is_allow = does_user_have_roles role_names
+
+    if is_allow == false
+      return render json: { message: "don't allow this url", error: true, success: false }, status: :forbidden
+    end
+  end
+
+  def does_user_have_roles(roles)
     is_allow = false
-    roles = @roles
     @current_user = current_user
     current_roles = @current_user.roles
-    roles = Set.new(["manager", "profesor"])
+    roles = Set.new(roles)
 
     i = 0
     while !is_allow and i < current_roles.length
@@ -17,9 +34,7 @@ class ResourceProtectedController < ApplicationController
       i += 1
     end
 
-    if is_allow == false
-      return render json: { message: "don't allow this url", error: true, success: false }, status: :forbidden
-    end
+    is_allow
   end
 
   # Show errors
