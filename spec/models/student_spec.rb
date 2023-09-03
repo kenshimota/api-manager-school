@@ -1,21 +1,7 @@
 require "rails_helper"
 
 RSpec.describe Student, type: :model do
-  let(:password) { "m4nAgeR." }
-  let(:email) { Faker::Internet.email }
-  let(:phone_code) { Faker::Number.number(digits: 3) }
-  let(:phone_number) { Faker::Number.number(digits: 10) }
-  let(:identity_document) { Faker::Number.number(digits: 10) }
-
-  let(:person) {
-    Person.create(
-      name: Faker::Name.first_name,
-      last_name: Faker::Name.last_name,
-      phone_code: phone_code,
-      phone_number: phone_number,
-      identity_document: identity_document,
-    )
-  }
+  let(:person) { FactoryBot.create(:person) }
 
   context "validate create a student" do
     it "a student doesn't be void" do
