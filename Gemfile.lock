@@ -113,6 +113,18 @@ GEM
     irb (1.7.4)
       reline (>= 0.3.6)
     jwt (2.7.1)
+    kaminari (1.2.2)
+      activesupport (>= 4.1.0)
+      kaminari-actionview (= 1.2.2)
+      kaminari-activerecord (= 1.2.2)
+      kaminari-core (= 1.2.2)
+    kaminari-actionview (1.2.2)
+      actionview
+      kaminari-core (= 1.2.2)
+    kaminari-activerecord (1.2.2)
+      activerecord
+      kaminari-core (= 1.2.2)
+    kaminari-core (1.2.2)
     loofah (2.21.3)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -200,9 +212,13 @@ GEM
       rspec-support (~> 3.12)
     rspec-support (3.12.1)
     thor (1.2.2)
+    timeliness (0.4.5)
     timeout (0.4.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
+    validates_timeliness (7.0.0.beta2)
+      activemodel (>= 7.0.0, < 8)
+      timeliness (>= 0.3.10, < 1)
     warden (1.2.9)
       rack (>= 2.0.9)
     warden-jwt_auth (0.8.0)
@@ -226,12 +242,14 @@ DEPENDENCIES
   factory_bot_rails (~> 6.2)
   faker (~> 2.23)
   fast_jsonapi (~> 1.5)
+  kaminari (~> 1.2)
   pg (~> 1.1)
   puma (~> 5.0)
   rack-cors (~> 2.0)
   rails (~> 7.0.6)
   rspec-rails (~> 6.0.0)
   tzinfo-data
+  validates_timeliness (~> 7.0.0.beta1)
 
 RUBY VERSION
    ruby 3.0.2p107
