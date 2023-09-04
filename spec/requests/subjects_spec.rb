@@ -89,7 +89,7 @@ RSpec.describe "Subjects", type: :request do
         expect(response).to have_http_status(:unprocessable_entity)
       end
 
-      it "success created" do
+      it "success updated" do
         put subject_path(subject), params: { subject: { name: "subject-unique-3" } }
         expect(response).to have_http_status(:accepted)
       end
@@ -131,7 +131,7 @@ RSpec.describe "Subjects", type: :request do
         expect(response).to have_http_status(:unprocessable_entity)
       end
 
-      it "success created" do
+      it "success updated" do
         put subject_path(subject), params: { subject: { name: "subject-unique-3" } }
         expect(response).to have_http_status(:accepted)
       end
