@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :section do
-    letter { "MyString" }
+    letter { "A" }
   end
 end
