@@ -3,7 +3,8 @@ class SubjectsController < ResourceProtectedController
   before_action :set_subject, only: [:show, :update, :destroy]
 
   def index
-    Subject.page params[:page]
+    subjects = Subject.page params[:page]
+    render json: subjects
   end
 
   def show

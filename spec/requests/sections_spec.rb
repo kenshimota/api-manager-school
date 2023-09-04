@@ -1,7 +1,7 @@
 require "rails_helper"
 
-RSpec.describe "Subjects", type: :request do
-  let(:subject) { FactoryBot.create(:subject) }
+RSpec.describe "Sections", type: :request do
+  let(:section) { FactoryBot.create(:section) }
 
   context "Session User Student" do
     before(:each) do
@@ -11,22 +11,22 @@ RSpec.describe "Subjects", type: :request do
     end
 
     it "GET /" do
-      get subjects_url
+      get sections_url
       expect(response).to have_http_status(:forbidden)
     end
 
     it "POST /" do
-      post subjects_url
+      post sections_url
       expect(response).to have_http_status(:forbidden)
     end
 
     it "PUT /:id" do
-      put subject_path(subject)
+      put section_path(section)
       expect(response).to have_http_status(:forbidden)
     end
 
     it "DELETE /:id" do
-      delete subject_path(subject)
+      delete section_path(section)
       expect(response).to have_http_status(:forbidden)
     end
   end
@@ -39,22 +39,22 @@ RSpec.describe "Subjects", type: :request do
     end
 
     it "GET /" do
-      get subjects_url
+      get sections_url
       expect(response).to have_http_status(:forbidden)
     end
 
     it "POST /" do
-      post subjects_url
+      post sections_url
       expect(response).to have_http_status(:forbidden)
     end
 
     it "PUT /:id" do
-      put subject_path(subject)
+      put section_path(section)
       expect(response).to have_http_status(:forbidden)
     end
 
     it "DELETE /:id" do
-      delete subject_path(subject)
+      delete section_path(section)
       expect(response).to have_http_status(:forbidden)
     end
   end
@@ -67,36 +67,54 @@ RSpec.describe "Subjects", type: :request do
     end
 
     it "GET /" do
-      get subjects_url
+      get sections_url
       expect(response).to have_http_status(:success)
     end
 
     describe "POST /" do
-      it "send subject without name" do
-        post subjects_url, params: { subject: { name: "" } }
+      it "send section without letter" do
+        post sections_url, params: { section: { letter: "" } }
+        expect(response).to have_http_status(:unprocessable_entity)
+      end
+
+      it "send section with greater than one letter" do
+        post sections_url, params: { section: { letter: "section-unique-2" } }
         expect(response).to have_http_status(:unprocessable_entity)
       end
 
       it "success created" do
-        post subjects_url, params: { subject: { name: "subject-unique-2" } }
+        letter = "a"
+        post sections_url, params: { section: { letter: letter } }
+        body = JSON.parse(response.body)
+
         expect(response).to have_http_status(:created)
+        expect(body["letter"]).to eq(letter.upcase)
       end
     end
 
     describe "PUT /:id" do
-      it "send subject without name" do
-        put subject_path(subject), params: { subject: { name: "" } }
+      it "send subject without letter" do
+        put section_path(section), params: { section: { letter: "" } }
+        expect(response).to have_http_status(:unprocessable_entity)
+      end
+
+      it "send section with greater than one letter" do
+        put section_path(section), params: { section: { letter: "letter" } }
         expect(response).to have_http_status(:unprocessable_entity)
       end
 
       it "success updated" do
-        put subject_path(subject), params: { subject: { name: "subject-unique-3" } }
+        letter = "b"
+        put section_path(section), params: { section: { letter: letter } }
+        body = JSON.parse(response.body)
+
         expect(response).to have_http_status(:accepted)
+        expect(body["letter"]).to eq(letter.upcase)
       end
     end
 
     it "DELETE /:id" do
-      delete subject_path(subject)
+      delete section_path(section)
       expect(response).to have_http_status(:no_content)
     end
   end
@@ -109,36 +127,54 @@ RSpec.describe "Subjects", type: :request do
     end
 
     it "GET /" do
-      get subjects_url
+      get sections_url
       expect(response).to have_http_status(:success)
     end
 
     describe "POST /" do
-      it "send subject without name" do
-        post subjects_url, params: { subject: { name: "" } }
+      it "send section without letter" do
+        post sections_url, params: { section: { letter: "" } }
+        expect(response).to have_http_status(:unprocessable_entity)
+      end
+
+      it "send section with greater than one letter" do
+        post sections_url, params: { section: { letter: "section-unique-2" } }
         expect(response).to have_http_status(:unprocessable_entity)
       end
 
       it "success created" do
-        post subjects_url, params: { subject: { name: "subject-unique-2" } }
+        letter = "a"
+        post sections_url, params: { section: { letter: letter } }
+        body = JSON.parse(response.body)
+
         expect(response).to have_http_status(:created)
+        expect(body["letter"]).to eq(letter.upcase)
       end
     end
 
     describe "PUT /:id" do
-      it "send subject without name" do
-        put subject_path(subject), params: { subject: { name: "" } }
+      it "send subject without letter" do
+        put section_path(section), params: { section: { letter: "" } }
+        expect(response).to have_http_status(:unprocessable_entity)
+      end
+
+      it "send section with greater than one letter" do
+        put section_path(section), params: { section: { letter: "letter" } }
         expect(response).to have_http_status(:unprocessable_entity)
       end
 
       it "success updated" do
-        put subject_path(subject), params: { subject: { name: "subject-unique-3" } }
+        letter = "b"
+        put section_path(section), params: { section: { letter: letter } }
+        body = JSON.parse(response.body)
+
         expect(response).to have_http_status(:accepted)
+        expect(body["letter"]).to eq(letter.upcase)
       end
     end
 
     it "DELETE /:id" do
-      delete subject_path(subject)
+      delete section_path(section)
       expect(response).to have_http_status(:no_content)
     end
   end
